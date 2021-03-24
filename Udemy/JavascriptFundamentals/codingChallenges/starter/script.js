@@ -63,7 +63,7 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 //HTML Elements
 
-const displayMovements = (function (movements) {
+const displayMovements = function (movements) {
 	containerMovements.innerHTML = "";
 
 	movements.forEach(function (movement, index) {
@@ -74,13 +74,83 @@ const displayMovements = (function (movements) {
         <div class="movements__type movements__type--${type}">${
 			index + 1
 		} ${type}</div>
-        <div class="movements__value">${Math.abs(movement)}</div>
+        <div class="movements__value">${Math.abs(movement)} €</div>
       </div>
     `;
 
 		containerMovements.insertAdjacentHTML("afterbegin", htmlMovement);
 	});
-})(account1.movements);
+};
+
+const calculateDisplayBalance = function (movements) {
+	const balance = movements.reduce(
+		(accumulator, movement) => accumulator + movement,
+		0
+	);
+	labelBalance.textContent = `${balance} € (EUR)`;
+};
+
+calculateDisplayBalance(account1.movements);
+
+const calculateDisplaySummary = function (movements) {
+	const incomes = movements
+		.filter((movement) => movement > 0)
+		.reduce((accumulator, movement) => accumulator + movement, 0);
+
+	labelSumIn.textContent = `${incomes}€`;
+
+	const withdrawals = movements
+		.filter((movement) => movement < 0)
+		.reduce((accumulator, movement) => accumulator + Math.abs(movement), 0);
+
+	labelSumOut.textContent = `${withdrawals}€`;
+
+	const interest = movements
+		.filter((movement) => movement > 0)
+		.map((deposit) => (deposit * 1.2) / 100)
+		.filter((interest, index, array) => interest >= 1)
+		.reduce((accumulator, movement) => accumulator + movement, 0);
+
+	labelSumInterest.textContent = `${interest}€`;
+};
+
+calculateDisplaySummary(account1.movements);
+
+const createUsernames = function (accounts) {
+	accounts.forEach(function (account) {
+		account.username = account.owner
+			.toLowerCase()
+			.split(" ")
+			.map((name) => name[0])
+			.join("");
+	});
+};
+
+createUsernames(accounts);
+
+let currentAccount;
+
+btnLogin.addEventListener("click", function (event) {
+	event.preventDefault();
+
+	currentAccount = accounts.find(
+		(account) => account.username === inputLoginUsername.value
+	);
+
+	if (currentAccount?.pin === Number(inputLoginPin.value)) {
+		labelWelcome.textContent = `Welcome Back, ${
+			currentAccount.owner.split(" ")[0]
+		}`;
+
+		containerApp.style.opacity = 100;
+
+		displayMovements(currentAccount.movements);
+		calculateDisplayBalance(currentAccount.movements);
+		calculateDisplaySummary(currentAccount.movements);
+		console.log(currentAccount);
+	}
+});
+
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
@@ -94,3 +164,10 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+
+// const maximumValue = movements.reduce((accumulator, movement) => {
+// 	if (accumulator > movement) return accumulator;
+// 	else return movement;
+// }, movements[0]);
+
+// console.log(maximumValue);
