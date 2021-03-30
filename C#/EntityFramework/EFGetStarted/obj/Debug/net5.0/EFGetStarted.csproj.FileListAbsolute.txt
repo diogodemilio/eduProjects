@@ -1,0 +1,5 @@
+C:\Users\User01\Documents\GitHub\eduProjects\C#\EntityFramework\EFGetStarted\obj\Debug\net5.0\EFGetStarted.csprojAssemblyReference.cache
+C:\Users\User01\Documents\GitHub\eduProjects\C#\EntityFramework\EFGetStarted\obj\Debug\net5.0\EFGetStarted.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User01\Documents\GitHub\eduProjects\C#\EntityFramework\EFGetStarted\obj\Debug\net5.0\EFGetStarted.AssemblyInfoInputs.cache
+C:\Users\User01\Documents\GitHub\eduProjects\C#\EntityFramework\EFGetStarted\obj\Debug\net5.0\EFGetStarted.AssemblyInfo.cs
+C:\Users\User01\Documents\GitHub\eduProjects\C#\EntityFramework\EFGetStarted\obj\Debug\net5.0\EFGetStarted.csproj.CoreCompileInputs.cache
