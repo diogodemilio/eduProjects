@@ -30,6 +30,43 @@ namespace ContosoUniversity.Pages.Students
                 return NotFound();
             }
 
+            Student = await _context.Students.FindAsync(id);
+
+            if (Student == null)
+            {
+                return NotFound();
+            }
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+            var studentToUpdate = await _context.Students.FindAsync(id);
+
+            if (studentToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (await TryUpdateModelAsync<Student>(
+                studentToUpdate,
+                "student",
+                s => s.FirstMidName, s => s.LastName, s => s.EnrollmentDate))
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+
+            return Page();
+        }
+
+        /*public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             Student = await _context.Students.FirstOrDefaultAsync(m => m.ID == id);
 
             if (Student == null)
@@ -67,7 +104,7 @@ namespace ContosoUniversity.Pages.Students
             }
 
             return RedirectToPage("./Index");
-        }
+        }*/
 
         private bool StudentExists(int id)
         {
