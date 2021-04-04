@@ -1,0 +1,16 @@
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\bin\Debug\net5.0\ObjectOrientedProgramming.CSharp.exe
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\bin\Debug\net5.0\ObjectOrientedProgramming.CSharp.deps.json
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\bin\Debug\net5.0\ObjectOrientedProgramming.CSharp.runtimeconfig.json
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\bin\Debug\net5.0\ObjectOrientedProgramming.CSharp.runtimeconfig.dev.json
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\bin\Debug\net5.0\ObjectOrientedProgramming.CSharp.dll
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\bin\Debug\net5.0\ref\ObjectOrientedProgramming.CSharp.dll
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\bin\Debug\net5.0\ObjectOrientedProgramming.CSharp.pdb
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.csprojAssemblyReference.cache
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.AssemblyInfoInputs.cache
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.AssemblyInfo.cs
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.csproj.CoreCompileInputs.cache
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.dll
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ref\ObjectOrientedProgramming.CSharp.dll
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.pdb
+C:\Users\User01\Documents\GitHub\eduProjects\CSFundamentals\Exercise1\obj\Debug\net5.0\ObjectOrientedProgramming.CSharp.genruntimeconfig.cache

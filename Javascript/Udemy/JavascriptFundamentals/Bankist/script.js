@@ -63,10 +63,14 @@ const inputClosePin = document.querySelector(".form__input--pin");
 
 //HTML Elements
 
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sort = false) {
 	containerMovements.innerHTML = "";
 
-	movements.forEach(function (movement, index) {
+	const orderedMovements = sort
+		? movements.slice().sort((a, b) => a - b)
+		: movements;
+
+	orderedMovements.forEach(function (movement, index) {
 		const type = movement > 0 ? "deposit" : "withdrawal";
 
 		const htmlMovement = `
@@ -82,15 +86,15 @@ const displayMovements = function (movements) {
 	});
 };
 
-const calculateDisplayBalance = function (movements) {
-	const balance = movements.reduce(
+const calculateDisplayBalance = function (account) {
+	account.balance = account.movements.reduce(
 		(accumulator, movement) => accumulator + movement,
 		0
 	);
-	labelBalance.textContent = `${balance} € (EUR)`;
+	labelBalance.textContent = `${account.balance} € (EUR)`;
 };
 
-calculateDisplayBalance(account1.movements);
+//calculateDisplayBalance(account1.movements);
 
 const calculateDisplaySummary = function (movements) {
 	const incomes = movements
@@ -114,7 +118,7 @@ const calculateDisplaySummary = function (movements) {
 	labelSumInterest.textContent = `${interest}€`;
 };
 
-calculateDisplaySummary(account1.movements);
+//calculateDisplaySummary(account1.movements);
 
 const createUsernames = function (accounts) {
 	accounts.forEach(function (account) {
@@ -126,9 +130,17 @@ const createUsernames = function (accounts) {
 	});
 };
 
+const refreshMovements = function (account) {
+	displayMovements(account.movements);
+	calculateDisplayBalance(account);
+	calculateDisplaySummary(account.movements);
+};
+
 createUsernames(accounts);
 
 let currentAccount;
+
+// Event handlers
 
 btnLogin.addEventListener("click", function (event) {
 	event.preventDefault();
@@ -143,12 +155,94 @@ btnLogin.addEventListener("click", function (event) {
 		}`;
 
 		containerApp.style.opacity = 100;
+		inputLoginPin.value = "";
 
-		displayMovements(currentAccount.movements);
-		calculateDisplayBalance(currentAccount.movements);
-		calculateDisplaySummary(currentAccount.movements);
+		refreshMovements(currentAccount);
 		console.log(currentAccount);
+	} else alert("User does not exist/Password is not correct!");
+});
+
+btnTransfer.addEventListener("click", function (event) {
+	event.preventDefault();
+	const amount = Number(inputTransferAmount.value);
+	const receiverAccount = accounts.find(
+		(account) => account.username === inputTransferTo.value
+	);
+
+	console.log(receiverAccount);
+	console.log(receiverAccount?.username !== currentAccount.username);
+	console.log(inputTransferTo.value);
+
+	if (receiverAccount) {
+		if (currentAccount.balance >= amount && amount > 0) {
+			if (receiverAccount?.username !== currentAccount.username) {
+				currentAccount.movements.push(-amount);
+				receiverAccount.movements.push(amount);
+				refreshMovements(currentAccount);
+			} else alert("Wrong transfer username");
+		} else alert("Something wrong with your money/transfer");
+	} else alert("Something wrong with receiver's account");
+
+	inputTransferAmount.value = "";
+	inputTransferTo.value = "";
+});
+
+btnLoan.addEventListener("click", function (event) {
+	event.preventDefault();
+
+	const loan =
+		Number(inputLoanAmount.value) > 0
+			? Number(inputLoanAmount.value)
+			: undefined;
+
+	const loanPermission = currentAccount.movements.some(
+		(movement) => movement >= loan * 0.1
+	);
+
+	if (loanPermission) {
+		currentAccount.movements.push(loan);
+		refreshMovements(currentAccount);
+	} else alert("We're not able to lend you money. Go to work!");
+
+	inputLoanAmount.value = "";
+});
+
+btnClose.addEventListener("click", function (event) {
+	event.preventDefault();
+
+	if (inputCloseUsername.value) {
+		if (inputCloseUsername.value === currentAccount.username) {
+			if (Number(inputClosePin.value) === currentAccount.pin) {
+				accounts.splice(
+					accounts.findIndex(
+						(account) => account.username === currentAccount.username
+					),
+					1
+				);
+				labelWelcome.textContent = "Log in to get started";
+				containerApp.style.opacity = 0;
+			} else alert("Password is not correct!");
+		} else alert("Username is not correct!");
 	}
+
+	inputTransferAmount.value = "";
+	inputTransferTo.value = "";
+});
+
+let sorted = false;
+btnSort.addEventListener("click", function (event) {
+	event.preventDefault();
+
+	displayMovements(currentAccount.movements, !sorted);
+	sorted = !sorted;
+
+	// if (btnSort.textContent == "&downarrow; SORT") {
+
+	// 	btnSort.textContent = "&uparrow; SORT";
+	// } else if (btnSort.textContent == "&uparrow; SORT") {
+
+	// 	btnSort.textContent = "&downarrow; SORT";
+	// }
 });
 
 /////////////////////////////////////////////////
