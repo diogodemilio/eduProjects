@@ -11,17 +11,26 @@ const inputElevation = document.querySelector(".form__input--elevation");
 class Workout {
 	date = new Date();
 	id = (Date.now() + "").slice(-10);
+	clicks;
+	description;
+
 	constructor(coordinates, distance, duration) {
 		this.coordinates = coordinates;
 		this.distance = distance;
 		this.duration = duration;
 	}
 
-	Description() {
+	_description() {
 		// prettier-ignore
 		const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-		return ` on ${months[this.date.getMonth()]} ${this.date.getUTCDate()}`;
+		this.description = `${this.type} on ${
+			months[this.date.getMonth()]
+		} ${this.date.getUTCDate()}`;
+	}
+
+	click() {
+		this.clicks++;
 	}
 }
 
@@ -32,6 +41,7 @@ class Running extends Workout {
 		super(coordinates, distance, duration);
 		this.cadence = cadence;
 		this._calculatePace();
+		this._description();
 	}
 
 	_calculatePace() {
@@ -47,6 +57,7 @@ class Cycling extends Workout {
 		super(coordinates, distance, duration);
 		this.elevationGain = elevationGain;
 		this._calculateSpeed();
+		this._description();
 	}
 
 	_calculateSpeed() {
@@ -58,14 +69,21 @@ class Cycling extends Workout {
 class App {
 	#map;
 	#mapEvent;
+	#mapZoomLevel = 16;
 	#workouts = [];
+	#localStorageKey = "workout";
 
 	constructor() {
+		// NOTE Get user's position
 		this._getposition();
 
-		form.addEventListener("submit", this._newWorkout.bind(this));
+		// NOTE Get data from local storage
+		this._getDataStorage();
 
+		// NOTE Attach event handlers
+		form.addEventListener("submit", this._newWorkout.bind(this));
 		inputType.addEventListener("change", this._toggleElevationField);
+		containerWorkouts.addEventListener("click", this._moveToPopup.bind(this));
 	}
 
 	_showForm(mapEvnt) {
@@ -98,6 +116,11 @@ class App {
 		}).addTo(this.#map);
 
 		this.#map.on("click", this._showForm.bind(this));
+
+		this.#workouts.forEach((workout) => {
+			this._renderWorkout(workout);
+			this._renderWorkoutMap(workout);
+		});
 	}
 
 	_getposition() {
@@ -153,10 +176,20 @@ class App {
 			workout = new Cycling([lat, lng], distance, duration, elevationGain);
 		}
 
+		// NOTE Add new objects to workout array
 		this.#workouts.push(workout);
+
+		// NOTE Render workout on map as marker
 		this._renderWorkoutMap(workout);
+
+		// NOTE Render workout on list
 		this._renderWorkout(workout);
+
+		// NOTE Hide form + clear input fields
 		this._hideForm();
+
+		// NOTE Set local storage to all workouts
+		this._setLocalStorage();
 	}
 
 	_renderWorkoutMap(workout) {
@@ -173,18 +206,14 @@ class App {
 					}-popup`,
 				})
 			)
-			.setPopupContent(
-				`${workout.type === "Running" ? "🏃‍♂️" : "🚴‍♀️"} ${
-					workout.type
-				} ${workout.Description()}`
-			)
+			.setPopupContent(`${workout.description}`)
 			.openPopup();
 	}
 
 	_renderWorkout(workout) {
 		let html = `
       <li class="workout workout--${workout.type}" data-id="${workout.id}">
-        <h2 class="workout__title">${workout.type} ${workout.Description()}</h2>
+        <h2 class="workout__title">${workout.description}</h2>
         <div class="workout__details">
           <span class="workout__icon">${
 						workout.type === "Running" ? "🏃‍♂️" : "🚴‍♀️"
@@ -230,8 +259,46 @@ class App {
 		}
 
 		form.insertAdjacentHTML("afterend", html);
+	}
 
-		console.log(workout.type + workout.Description());
+	_moveToPopup(event) {
+		if (!this.#map) return;
+
+		const workoutElement = event.target.closest(".workout");
+
+		if (!workoutElement) return;
+
+		const workout = this.#workouts.find(
+			(workout) => workout.id === workoutElement.dataset.id
+		);
+
+		this.#map.setView(workout.coordinates, this.#mapZoomLevel, {
+			animate: true,
+			pan: { duration: 1 },
+		});
+
+		workout.click();
+	}
+
+	_setLocalStorage() {
+		localStorage.setItem(this.#localStorageKey, JSON.stringify(this.#workouts));
+	}
+
+	_getDataStorage() {
+		const data = JSON.parse(localStorage.getItem(this.#localStorageKey));
+
+		if (!data) return;
+
+		this.#workouts = data;
+
+		this.#workouts.forEach((workout) => {
+			this._renderWorkout(workout);
+		});
+	}
+
+	reset() {
+		localStorage.removeItem(this.#localStorageKey);
+		location.reload();
 	}
 }
 
