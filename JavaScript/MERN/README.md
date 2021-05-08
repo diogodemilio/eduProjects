@@ -1,3 +1,3 @@
-# JavaScript
+# MERN JavaScript
 
-JavaScript E-learning courses and resources
+JavaScript MongoDB, ExpressJS, ReactJS and NodeJS E-learning courses and resources
