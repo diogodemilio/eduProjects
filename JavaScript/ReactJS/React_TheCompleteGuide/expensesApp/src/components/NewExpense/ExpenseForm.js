@@ -47,7 +47,7 @@ export default function ExpenseForm(props) {
 
 		const expenseData = {
 			title: userInput.stateTitle,
-			amount: userInput.stateAmount,
+			amount: Number(userInput.stateAmount),
 			date: new Date(userInput.stateDate),
 		};
 		console.log(expenseData);
@@ -92,6 +92,9 @@ export default function ExpenseForm(props) {
 				</div>
 			</div>
 			<div className="new-expense__actions">
+				<button onClick={props.onCancelData} type="button">
+					Cancel
+				</button>
 				<button onChange={expenseChangeHandler} type="submit">
 					Add Expense
 				</button>
