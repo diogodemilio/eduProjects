@@ -1,66 +1,65 @@
-import React, { useState } from "react";
-import { Card, Button } from "../UI/indexUI";
+import React, { useState, useRef } from "react";
+import { Card, Button, ErrorModal } from "../UI/indexUI";
 
 import CSS from "./AddUser.module.css";
 
 export default function AddUser(props) {
-	const [user, setUser] = useState({
-		username: "",
-		age: "",
-	});
+	const nameInputRef = useRef();
+	const ageInputRef = useRef();
+
+	const [error, setError] = useState();
+
 	const addUserHandler = function (event) {
 		event.preventDefault();
-		if (user.username.trim().length === 0 || user.age.trim().length === 0)
+		const inputUser = nameInputRef.current.value;
+		const inputAge = ageInputRef.current.value;
+
+		if (inputUser.trim().length === 0 || inputAge.trim().length === 0) {
+			setError({
+				title: "Invalid input",
+				message: "Please enter a valid name and age",
+			});
 			return;
-		if (+user.age < 1) return;
-		console.log(user);
-		setUser({
-			username: "",
-			age: "",
-		});
+		}
+		if (+inputAge < 1) {
+			setError({
+				title: "Invalid age",
+				message: "Please enter a valid age (> 0).",
+			});
+			return;
+		}
+
+		props.onAddUser(inputUser, inputAge);
+		nameInputRef.current.value = "";
+		ageInputRef.current.value = "";
 	};
 
-	const usernameChangeHandler = function (event) {
-		setUser((previousState) => {
-			return {
-				...previousState,
-				username: event.target.value,
-			};
-		});
-	};
-
-	const ageChangeHandler = function (event) {
-		setUser((previousState) => {
-			return {
-				...previousState,
-				age: event.target.value,
-			};
-		});
+	const errorClearHandler = function () {
+		setError();
 	};
 
 	return (
-		<Card className={CSS.input}>
-			<form onSubmit={addUserHandler}>
-				<label htmlFor="username">Username</label>
-				<input
-					id="username"
-					type="text"
-					value={user.username}
-					onChange={usernameChangeHandler}
+		<>
+			{error && (
+				<ErrorModal
+					title={error.title}
+					message={error.message}
+					clearError={errorClearHandler}
 				/>
-				<label htmlFor="age">Age</label>
-				<input
-					id="age"
-					type="number"
-					value={user.age}
-					onChange={ageChangeHandler}
-				/>
-				<Button
-					type={"submit"}
-					//onclick={onClickHandler}
-					children={"Add User"}
-				/>
-			</form>
-		</Card>
+			)}
+			<Card className={CSS.input}>
+				<form onSubmit={addUserHandler}>
+					<label htmlFor="username">Username</label>
+					<input id="username" type="text" ref={nameInputRef} />
+					<label htmlFor="age">Age</label>
+					<input id="age" type="number" ref={ageInputRef} />
+					<Button
+						type={"submit"}
+						//onclick={onClickHandler}
+						children={"Add User"}
+					/>
+				</form>
+			</Card>
+		</>
 	);
 }
