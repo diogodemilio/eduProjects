@@ -246,6 +246,8 @@ accounts.forEach((account) => {
 
 // Event handlers
 
+currentAccount = account1;
+
 btnLogin.addEventListener("click", function (event) {
 	event.preventDefault();
 
