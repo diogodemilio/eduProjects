@@ -417,6 +417,7 @@ const controlSearchResults = async function() {
     }
 };
 const init = function() {
+    if (module.hot) module.hot.accept();
     _recipeViewDefault.default.addHandlerRender(controlRecipes);
     _searchViewDefault.default.addHandlerSearch(controlSearchResults);
 };
@@ -12403,6 +12404,7 @@ class View {
         const markup = this._generateMarkup();
         if (!render) return markup;
         this._clear();
+        console.log("não passo aqui!");
         this._parentElement.insertAdjacentHTML("afterbegin", markup);
     }
     _clear() {
@@ -12461,8 +12463,10 @@ class ResultsView extends _viewDefault.default {
     _startMessage = "";
     _generateMarkup() {
         console.log(this._data);
-        return this._data.map((recipe)=>this._generateMarkupPreview(recipe)
-        ).join();
+        return this._data.map((recipe)=>{
+            this._generateMarkupPreview(recipe);
+            console.log(recipe);
+        }).join();
     }
     _generateMarkupPreview(recipe) {
         return `\n      <li class="preview">\n        <a class="preview__link" href="#${recipe.id}">\n          <figure class="preview__fig">\n            <img src="${recipe.image}" alt="${recipe.title}" />\n          </figure>\n          <div class="preview__data">\n            <h4 class="preview__title">${recipe.title}</h4>\n            <p class="preview__publisher">${recipe.publisher}</p>\n            <!-- <div class="preview__user-generated">\n              <svg>\n                <use href="${_iconsSvgDefault.default}#icon-user"></use>\n              </svg>\n            </div>\n          </div>\n        </a>\n      </li>\n    `;

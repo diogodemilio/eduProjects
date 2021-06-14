@@ -40,6 +40,9 @@ const controlSearchResults = async function () {
 };
 
 const init = function () {
+	if (module.hot) {
+		module.hot.accept();
+	}
 	recipeView.addHandlerRender(controlRecipes);
 	searchView.addHandlerSearch(controlSearchResults);
 };

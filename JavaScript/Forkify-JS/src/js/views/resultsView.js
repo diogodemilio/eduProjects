@@ -8,9 +8,11 @@ class ResultsView extends View {
 
 	_generateMarkup() {
 		console.log(this._data);
-
 		return this._data
-			.map((recipe) => this._generateMarkupPreview(recipe))
+			.map((recipe) => {
+				this._generateMarkupPreview(recipe);
+				console.log(recipe);
+			})
 			.join();
 	}
 
