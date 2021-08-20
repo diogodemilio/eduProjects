@@ -6,14 +6,196 @@
         xmlns:local="clr-namespace:WPF_01"
         mc:Ignorable="d"
         Title="My First GUI" Height="450" Width="800">
-    <StackPanel>
-        <TextBlock HorizontalAlignment="Center" Margin="20">Hello World</TextBlock>
-        <ListBox Height="100" Width="100">
-            <ListBoxItem Content="Item 1"/>
-            <ListBoxItem Content="Item 2"/>
-            <ListBoxItem Content="Item 3"/>
-        </ListBox>
-        <Button Content="Click me" Click="Button_Click" Margin="20"/>
+    <!--
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="0" Grid.Column="0" Content="0"/>
+        <Button Grid.Row="0" Grid.Column="1" Content="1"/>
+        <Button Grid.Row="0" Grid.Column="2" Content="2"/>
+
+        <Button Grid.Row="1" Grid.Column="0" Content="3"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="4"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="5"/>
         
+        <Button Grid.Row="2" Grid.Column="0" Content="6"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="7"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Text="Como é que é?"/>
+    </Grid>
+    -->
+    <!--<Grid>
+        <Button Width="200" Height="100" Background="PaleVioletRed" Content="Click Me">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="FontSize" Value="30"></Setter>
+                            
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>-->
+
+    <!--
+    4 Modes of Data Binding
+        Binding Target:   <-    oneWay       Binding Source
+        Binding Target:   <-    twoWay     ->  Binding Source
+        Binding Target:        oneWayToSource   ->    Binding Source
+        Binding Target:   <_ _ _    OneTime      Binding Source - done in constructor so only once during intialization
+    -->
+    <!--<StackPanel>
+        --><!--Textbox is the target--><!--
+        <TextBox Name="MyTextBox" Width="100" Margin="50" Text="{Binding Mode=TwoWay, ElementName=MySlider, Path=Value, UpdateSourceTrigger=PropertyChanged}"/>
+        --><!--Slider is the binding source--><!--
+        <Slider Name="MySlider" Minimum="0" Maximum="100"/>
+    </StackPanel>-->
+    
+    <!--<StackPanel>
+        <Label Content="Num1"/>
+        <TextBox Name="MyTextBox1" Width="100" Height="30" Text="{Binding Path=Num1, Mode=TwoWay}"></TextBox>
+        <Label Content="Num2"/>
+        <TextBox Name="MyTextBox2" Width="100" Height="30" Text="{Binding Path=Num2, Mode=TwoWay}"></TextBox>
+        <Label Content="Result"/>
+        <TextBox Name="MyTextBox3" Width="100" Height="30" Text="{Binding Path=Result, Mode=TwoWay}"></TextBox>
+    </StackPanel>-->
+    
+    
+    <!-- ListBox and a List of Current Matches -->
+    <!--<Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Name="lbMatches" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Team1}" />
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Text="{Binding Score1}" />
+                        <TextBlock Grid.Column="2" HorizontalAlignment="Center" Text="{Binding Score2}" />
+                        <TextBlock Grid.Column="3" Text="{Binding Team2}" />
+                        <ProgressBar Grid.Column="4" Minimum="0" Maximum="90" Value="{Binding Completion}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            
+        </ListBox>
+        <Button Grid.Column="1" Click="Button_Click" Content="Show Selected"/>
+    </Grid>-->
+    
+    <!-- ComboBox -->
+    <!--<StackPanel>
+        <ComboBox Name="comboBoxColors">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle Fill="{Binding Name}" Width="32" Height="32" Margin="5"/>
+                        <TextBlock Text="{Binding Name}" FontSize="32"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+    </StackPanel>-->
+    
+    <!-- CheckBox -->
+    <!--<StackPanel>
+        <Label FontWeight="Bold" Content="Pizza Topings"/>
+        <CheckBox Name="cbAllTopings" IsThreeState="True" Checked="CbAllCheckedChanged" Unchecked="CbAllCheckedChanged" Content="Add All"/>
+        <StackPanel Margin="10px">
+            <CheckBox Name="cbSalami" Checked="CbSingleCheckedChanged" Unchecked="CbSingleCheckedChanged">
+                <TextBlock>
+                    Salami <Run Foreground="Red" FontWeight="Bold" Text="Spicy"/>
+                </TextBlock>
+            </CheckBox>
+            <CheckBox Name="cbMushrooms" Checked="CbSingleCheckedChanged" Unchecked="CbSingleCheckedChanged" Content="Mushrooms"/>
+            <CheckBox Name="cbMozzarella" Checked="CbSingleCheckedChanged" Unchecked="CbSingleCheckedChanged" Content="Mozzarella"/>
+        </StackPanel>
+    </StackPanel>-->
+    
+    <!-- RadioButton and Images -->
+    <!--<StackPanel>
+        <Label FontWeight="Bold" FontSize="20" Content="Do you like me?"/>
+        <RadioButton Margin="5">
+            <WrapPanel>
+                <Rectangle Fill="Green" Width="16" Height="16" />
+                <TextBlock Foreground="Green" Margin="5,0,0,0" Text="Yes"/>
+            </WrapPanel>
+        </RadioButton>
+        <RadioButton Margin="5">
+            <WrapPanel>
+                <Rectangle Fill="Red" Width="16" Height="16" />
+                <TextBlock Foreground="Red" Margin="5,0,0,0" Text="No"/>
+            </WrapPanel>
+        </RadioButton>
+        <RadioButton Margin="5" Checked="RadioButton_MaybeChecked">
+            <WrapPanel>
+                <Rectangle Width="16" Height="16" Fill="Yellow"/>
+                <TextBlock Foreground="Yellow" Margin="5,0,0,0" Text="Maybe"/>
+            </WrapPanel>
+        </RadioButton>
+    </StackPanel>-->
+    
+    <!-- Property, Data and Event Triggers -->
+    <StackPanel>
+        <Grid>
+            <TextBlock Text="Hello, beloved world" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="Green"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value=" Red"/>
+                                <Setter Property="TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+        <Grid>
+            <TextBlock Text="Hello, buddy!" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0:0.500" Storyboard.TargetProperty="FontSize" To="72"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0:0.300" Storyboard.TargetProperty="FontSize" To="24"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
     </StackPanel>
 </Window>
