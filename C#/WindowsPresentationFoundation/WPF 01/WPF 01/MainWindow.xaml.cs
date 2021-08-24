@@ -43,6 +43,7 @@ namespace WPF_01
             //comboBoxColors.ItemsSource = typeof(Colors).GetProperties();
         }
 
+
         //private void Button_Click(object sender, RoutedEventArgs e)
         //{
         //    MessageBox.Show("Thanks for clicking me");
@@ -115,5 +116,11 @@ namespace WPF_01
         //{
         //    MessageBox.Show("Please say yes!");
         //}
+
+        //Password Box
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Welcome " + tbUsername.Text);
+        }
     }
 }

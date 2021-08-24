@@ -153,7 +153,7 @@
     </StackPanel>-->
     
     <!-- Property, Data and Event Triggers -->
-    <StackPanel>
+    <!--<StackPanel>
         <Grid>
             <TextBlock Text="Hello, beloved world" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock.Style>
@@ -197,5 +197,31 @@
                 </TextBlock.Style>
             </TextBlock>
         </Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <CheckBox Name="cbHello" Content="Is Someone there?"/>
+            <TextBlock HorizontalAlignment="Center" FontSize="16">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="No"/>
+                        <Setter Property="Foreground" Value="Red"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=cbHello, Path=IsChecked}" Value="True">
+                                <Setter Property="Text" Value="Of Course"/>
+                                <Setter Property="Foreground" Value="Green"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>  
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
+    </StackPanel>-->
+    
+    <!-- PasswordBox -->
+    <StackPanel>
+        <Label Content="Username"/>
+        <TextBox Name="tbUsername"/>
+        <Label Content="Password"/>
+        <PasswordBox MinHeight="8" MaxHeight="32" PasswordChar="D"/>
+        <Button Margin="5" Content="Login" Click="Login_Click"/>
     </StackPanel>
 </Window>
