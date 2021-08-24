@@ -1,0 +1,15 @@
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\bin\Debug\WPF Zoo Manager.exe.config
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\bin\Debug\WPF Zoo Manager.exe
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\bin\Debug\WPF Zoo Manager.pdb
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF ZooManager.csproj.AssemblyReference.cache
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\MainWindow.g.cs
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\App.g.cs
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF Zoo Manager_MarkupCompile.cache
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF Zoo Manager_MarkupCompile.lref
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\MainWindow.baml
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF Zoo Manager.g.resources
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF_Zoo_Manager.Properties.Resources.resources
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF ZooManager.csproj.GenerateResource.cache
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF ZooManager.csproj.CoreCompileInputs.cache
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF Zoo Manager.exe
+C:\Users\a828151\Documents\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\WPF Zoo Manager.pdb
