@@ -64,10 +64,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CSharpTutorialsDBDataSet.Designer.cs">
+    <Compile Include="CSharpTutorialDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CSharpTutorialsDBDataSet.xsd</DependentUpon>
+      <DependentUpon>CSharpTutorialDBDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -92,16 +92,16 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="CSharpTutorialsDBDataSet.xsc">
-      <DependentUpon>CSharpTutorialsDBDataSet.xsd</DependentUpon>
+    <None Include="CSharpTutorialDBDataSet.xsc">
+      <DependentUpon>CSharpTutorialDBDataSet.xsd</DependentUpon>
     </None>
-    <None Include="CSharpTutorialsDBDataSet.xsd">
+    <None Include="CSharpTutorialDBDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>CSharpTutorialsDBDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>CSharpTutorialDBDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="CSharpTutorialsDBDataSet.xss">
-      <DependentUpon>CSharpTutorialsDBDataSet.xsd</DependentUpon>
+    <None Include="CSharpTutorialDBDataSet.xss">
+      <DependentUpon>CSharpTutorialDBDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
