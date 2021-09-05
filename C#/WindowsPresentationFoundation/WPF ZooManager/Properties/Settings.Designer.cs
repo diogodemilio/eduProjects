@@ -26,17 +26,6 @@ namespace WPF_Zoo_Manager.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ABSTRACTEDGE-LE;Initial Catalog=CSharpTutorialsDB;Persist Security In" +
-            "fo=True;User ID=sa;Password=Diogo-4231!")]
-        public string CSharpTutorialsDBConnectionString {
-            get {
-                return ((string)(this["CSharpTutorialsDBConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ABSTRACTEDGE-LE;Initial Catalog=CSharpTutorialDB;Persist Security Inf" +
             "o=True;User ID=sa;Password=Diogo-4231!")]
         public string CSharpTutorialDBConnectionString {
