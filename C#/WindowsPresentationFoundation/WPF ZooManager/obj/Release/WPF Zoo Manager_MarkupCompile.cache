@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\diogo\Documents\GitHub\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Debug\
+C:\Users\diogo\Documents\GitHub\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\obj\Release\
 WPF_Zoo_Manager
 none
 false
-DEBUG;TRACE
+TRACE
 C:\Users\diogo\Documents\GitHub\eduProjects\C#\WindowsPresentationFoundation\WPF ZooManager\App.xaml
 11151548125
 
-7166537835
+61008897202
 141066371409
 MainWindow.xaml;
 
